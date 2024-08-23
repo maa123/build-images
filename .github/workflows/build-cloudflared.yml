@@ -27,7 +27,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./mastodon/
+          context: ./cloudflared/
           push: true
           tags: ghcr.io/maa123/build-images/cloudflared:latest
           cache-from: type=gha
