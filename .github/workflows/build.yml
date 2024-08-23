@@ -44,3 +44,5 @@ jobs:
           context: ./mastodon/
           push: true
           tags: ghcr.io/maa123/mstdn-image:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
