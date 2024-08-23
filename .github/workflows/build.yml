@@ -43,4 +43,4 @@ jobs:
         with:
           context: ./mastodon/
           push: true
-          tags: maa123/mstdn-image:latest
+          tags: ghcr.io/maa123/mstdn-image:latest
