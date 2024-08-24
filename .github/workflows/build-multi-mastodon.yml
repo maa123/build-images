@@ -51,6 +51,9 @@ jobs:
 
       - name: clone
         run: git clone https://github.com/maa123/mastodon.git --depth=1
+
+      - name: Dockerfile patch
+        run: sed -i 's/20.6-bookworm-slim/20-bookworm-slim/g' mastodon/Dockerfile
       
       - name: Build and push by digest
         id: build
