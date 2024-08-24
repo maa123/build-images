@@ -3,9 +3,9 @@ permissions:
   packages: write
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
+    paths:
+      - ".github/workflows/build-py-worker-base.yml"
   workflow_dispatch:
 
 jobs:
@@ -28,5 +28,5 @@ jobs:
           context: ./py-worker-base/
           push: true
           tags: ghcr.io/maa123/build-images/py-worker-base:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=py-worker-base
+          cache-to: type=gha,mode=max,scope=py-worker-base

@@ -3,9 +3,9 @@ permissions:
   packages: write
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
+    paths:
+      - ".github/workflows/build-cloudflared.yml"
   workflow_dispatch:
 
 jobs:
@@ -30,5 +30,5 @@ jobs:
           context: ./cloudflared/
           push: true
           tags: ghcr.io/maa123/build-images/cloudflared:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=cloudflared
+          cache-to: type=gha,mode=max,scope=cloudflared
