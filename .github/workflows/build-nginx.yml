@@ -27,7 +27,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./docker-nginx/mainline/alpine-slim/Dockerfile/
+          context: ./docker-nginx/mainline/alpine-slim/
           push: true
           tags: ghcr.io/maa123/build-images/nginx:latest
           cache-from: type=gha,scope=nginx
