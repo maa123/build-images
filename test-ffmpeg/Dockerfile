@@ -1,11 +1,17 @@
-FROM akashisn/ffmpeg:6.0
+FROM ubuntu:22.04
 
-WORKDIR /workspace
+# https://github.com/intel/intel-device-plugins-for-kubernetes/blob/main/demo/intel-opencl-icd/Dockerfile
 
-RUN ffmpeg -f lavfi -i testsrc=duration=10:size=1280x720:rate=30 /workspace/input.mp4
+ARG APT="env DEBIAN_FRONTEND=noninteractive apt"
 
-RUN echo '#!/bin/bash\n\
-vainfo\n\
-ffmpeg -init_hw_device qsv:hw -hwaccel qsv -hwaccel_output_format qsv -i /workspace/input.mp4 -c:v h264_qsv /workspace/output.mp4\n\
-echo "Intel QSV encoding complete!"' > /test_qsv.sh \
-    && chmod +x /test_qsv.sh
+RUN ${APT} update && ${APT} install -y curl gpg-agent \
+    && echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu jammy/lts/2350 unified' | \
+       tee -a /etc/apt/sources.list.d/intel.list \
+    && curl -s https://repositories.intel.com/gpu/intel-graphics.key | \
+       gpg --dearmor --output /usr/share/keyrings/intel-graphics.gpg \
+    && ${APT} update \
+    && ${APT} install -y --no-install-recommends \
+       intel-opencl-icd \
+       clinfo \
+    && ${APT} remove -y curl gpg-agent \
+    && ${APT} autoremove -y
