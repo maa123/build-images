@@ -26,9 +26,6 @@ RUN apt-get update && apt-get install -y \
     libxcb-shape0-dev \
     libxcb-xfixes0-dev \
     libnuma-dev \
-    && apt-get clean
-
-RUN apt-get update && apt-get install -y \
     autoconf \
     automake \
     libtool \
@@ -42,6 +39,16 @@ RUN git clone https://github.com/mstorsjo/fdk-aac.git /fdk-aac \
     && make install \
     && cd .. \
     && rm -rf /fdk-aac
+
+RUN git clone https://github.com/Intel-Media-SDK/MediaSDK.git /libmfx \
+    && cd /libmfx \
+    && mkdir build \
+    && cd build \
+    && cmake .. \
+    && make -j$(nproc) \
+    && make install \
+    && cd ../.. \
+    && rm -rf /libmfx
 
 RUN git clone https://git.ffmpeg.org/ffmpeg.git /ffmpeg \
     && cd /ffmpeg \
