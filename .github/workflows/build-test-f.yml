@@ -6,6 +6,7 @@ on:
     branches: ["master"]
     paths:
       - ".github/workflows/build-test-f.yml"
+      - "test-ffmpeg/"
   workflow_dispatch:
 
 jobs:
