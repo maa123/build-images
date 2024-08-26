@@ -9,5 +9,3 @@ vainfo\n\
 ffmpeg -hwaccel qsv -c:v h264_qsv -i /workspace/input.mp4 -c:v h264_qsv /workspace/output.mp4\n\
 echo "Intel QSV encoding complete!"' > /test_qsv.sh \
     && chmod +x /test_qsv.sh
-
-ENTRYPOINT ["/test_qsv.sh"]
