@@ -13,18 +13,8 @@ RUN apt-get update && apt-get install -y \
     nasm \
     libva-dev \
     vainfo \
-    intel-media-va-driver-non-free \
-    i965-va-driver \
     libdrm-dev \
     libpciaccess-dev \
-    libx11-dev \
-    libxext-dev \
-    libxfixes-dev \
-    libxdamage-dev \
-    libx11-xcb-dev \
-    libxcb-shm0-dev \
-    libxcb-shape0-dev \
-    libxcb-xfixes0-dev \
     libnuma-dev \
     autoconf \
     automake \
@@ -40,27 +30,32 @@ RUN git clone https://github.com/mstorsjo/fdk-aac.git /fdk-aac \
     && cd .. \
     && rm -rf /fdk-aac
 
-RUN git clone https://github.com/Intel-Media-SDK/MediaSDK.git /libmfx \
-    && cd /libmfx \
-    && mkdir build \
-    && cd build \
+RUN wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
+    | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
+
+RUN echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+
+RUN apt-get update && apt-get install -y intel-basekit libvpl-dev
+
+RUN git clone https://github.com/intel/vpl-gpu-rt vpl-gpu-rt \
+    && cd /vpl-gpu-rt \
+    && mkdir build && cd build \
     && cmake .. \
     && make -j$(nproc) \
     && make install \
     && cd ../.. \
-    && rm -rf /libmfx
+    && rm -rf /vpl-gpu-rt
 
 RUN git clone https://git.ffmpeg.org/ffmpeg.git /ffmpeg \
     && cd /ffmpeg \
     && ./configure \
         --enable-gpl \
         --enable-libx264 \
-        --enable-libx265 \
         --enable-libvpx \
         --enable-libmp3lame \
         --enable-libfdk-aac \
         --enable-vaapi \
-        --enable-libmfx \
+        --enable-libvpl \
         --enable-nonfree \
     && make -j$(nproc) \
     && make install \
