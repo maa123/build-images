@@ -15,6 +15,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: clone
         run: git clone https://github.com/collelog/tv-recorder-dockerfile.git --depth=1
+      
+      - name: patch
+        run: sed '/^LABEL maintainer/a\RUN apk add --no-cache tzdata \&\& cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \&\& echo "Asia/Tokyo" > /etc/timezone \&\& apk del tzdata' tv-recorder-dockerfile/mirakc/latest-alpine.Dockerfile
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
