@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: mirakc/
-          file: docker/Dockerfile.alpine
+          file: mirakc/docker/Dockerfile.alpine
           target: mirakc
           push: true
           tags: ghcr.io/maa123/build-images/mirakc:latest
