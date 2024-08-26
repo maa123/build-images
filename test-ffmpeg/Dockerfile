@@ -28,6 +28,21 @@ RUN apt-get update && apt-get install -y \
     libnuma-dev \
     && apt-get clean
 
+RUN apt-get update && apt-get install -y \
+    autoconf \
+    automake \
+    libtool \
+    && apt-get clean
+
+RUN git clone https://github.com/mstorsjo/fdk-aac.git /fdk-aac \
+    && cd /fdk-aac \
+    && autoreconf -fiv \
+    && ./configure --prefix=/usr/local --disable-shared \
+    && make -j$(nproc) \
+    && make install \
+    && cd .. \
+    && rm -rf /fdk-aac
+
 RUN git clone https://git.ffmpeg.org/ffmpeg.git /ffmpeg \
     && cd /ffmpeg \
     && ./configure \
