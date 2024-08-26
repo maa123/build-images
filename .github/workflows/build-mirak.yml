@@ -27,7 +27,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: tv-recorder-dockerfile/
+          context: tv-recorder-dockerfile/mirakc/
           file: tv-recorder-dockerfile/mirakc/latest-alpine.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
