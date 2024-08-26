@@ -2,7 +2,9 @@ FROM akashisn/ffmpeg:6.0
 
 WORKDIR /workspace
 
-RUN wget https://raw.githubusercontent.com/intel/intel-device-plugins-for-kubernetes/main/cmd/gpu_plugin/render-device.sh \
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+
+RUN curl -s https://raw.githubusercontent.com/intel/intel-device-plugins-for-kubernetes/main/cmd/gpu_plugin/render-device.sh -o render-device.sh \
     && chmod +x render-device.sh \
     && ./render-device.sh
 
