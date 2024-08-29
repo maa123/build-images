@@ -1,4 +1,5 @@
-FROM akashisn/ffmpeg:6.0
+#FROM akashisn/ffmpeg:6.0
+FROM ghcr.io/maa123/ffmpeg-docker/qsv/ffmpeg:latest
 
 WORKDIR /workspace
 
