@@ -5,10 +5,6 @@ WORKDIR /workspace
 
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
-RUN curl -s https://raw.githubusercontent.com/intel/intel-device-plugins-for-kubernetes/main/cmd/gpu_plugin/render-device.sh -o render-device.sh \
-    && chmod +x render-device.sh \
-    && ./render-device.sh
-
 RUN ffmpeg -f lavfi -i testsrc=duration=10:size=1280x720:rate=30 /workspace/input.mp4
 
 RUN echo '#!/bin/bash\n\
