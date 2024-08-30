@@ -28,6 +28,6 @@ jobs:
         with:
           context: ./test-ffmpeg/
           push: true
-          tags: ghcr.io/maa123/build-images/test-ffmpeg:latest
+          tags: ghcr.io/maa123/build-images/test-ffmpeg:latest,ghcr.io/maa123/build-images/test-ffmpeg:${{ github.sha }}
           cache-from: type=gha,scope=test-ffmpeg
           cache-to: type=gha,mode=max,scope=test-ffmpeg
