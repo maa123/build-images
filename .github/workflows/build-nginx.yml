@@ -29,6 +29,6 @@ jobs:
         with:
           context: ./docker-nginx/mainline/alpine-slim/
           push: true
-          tags: ghcr.io/maa123/build-images/nginx:latest
+          tags: ghcr.io/maa123/build-images/nginx:latest,ghcr.io/maa123/build-images/nginx:${{ github.sha }}
           cache-from: type=gha,scope=nginx
           cache-to: type=gha,mode=max,scope=nginx

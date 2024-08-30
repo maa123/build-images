@@ -31,6 +31,6 @@ jobs:
         with:
           context: ./mastodon/
           push: true
-          tags: ghcr.io/maa123/build-images/mastodon:latest
+          tags: ghcr.io/maa123/build-images/mastodon:latest,ghcr.io/maa123/build-images/mastodon:${{ github.sha }}
           cache-from: type=gha,scope=mastodon
           cache-to: type=gha,mode=max,scope=mastodon

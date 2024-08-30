@@ -34,6 +34,6 @@ jobs:
           file: tv-recorder-dockerfile/mirakc/latest-alpine.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/maa123/build-images/mirakc:latest
+          tags: ghcr.io/maa123/build-images/mirakc:latest,ghcr.io/maa123/build-images/mirakc:${{ github.sha }}
           cache-from: type=gha,scope=mirak
           cache-to: type=gha,mode=max,scope=mirak

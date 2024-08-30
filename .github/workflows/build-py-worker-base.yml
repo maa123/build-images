@@ -28,6 +28,6 @@ jobs:
         with:
           context: ./py-worker-base/
           push: true
-          tags: ghcr.io/maa123/build-images/py-worker-base:latest
+          tags: ghcr.io/maa123/build-images/py-worker-base:latest,ghcr.io/maa123/build-images/py-worker-base:${{ github.sha }}
           cache-from: type=gha,scope=py-worker-base
           cache-to: type=gha,mode=max,scope=py-worker-base
