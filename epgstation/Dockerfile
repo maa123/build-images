@@ -8,7 +8,7 @@ RUN git clone https://github.com/l3tnun/EPGStation.git --depth 1
 
 WORKDIR /workspace/EPGStation
 
-RUN npm ci
+RUN npm install
 
 RUN npm run build
 
