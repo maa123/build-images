@@ -1,4 +1,4 @@
-FROM ghcr.io/maa123/ffmpeg-docker/qsv/ffmpeg:latest AS build
+FROM ghcr.io/maa123/ffmpeg-docker/qsv/ffmpeg-node:latest AS build
 
 WORKDIR /workspace
 
@@ -12,7 +12,7 @@ RUN npm ci
 
 RUN npm run build
 
-FROM ghcr.io/maa123/ffmpeg-docker/qsv/ffmpeg:latest AS epgstation
+FROM ghcr.io/maa123/ffmpeg-docker/qsv/ffmpeg-node:latest AS epgstation
 
 WORKDIR /workspace
 
