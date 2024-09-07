@@ -12,11 +12,9 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
       - name: setup Docker
         run: |
-          brew install docker colima
+          brew install qemu docker colima
           colima start
 
       - uses: actions/checkout@v4
