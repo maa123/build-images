@@ -28,6 +28,6 @@ jobs:
         with:
           context: ./epgstation/
           push: true
-          tags: ghcr.io/maa123/build-images/epgstation:latest
+          tags: ghcr.io/maa123/build-images/epgstation:latest,ghcr.io/maa123/build-images/epgstation:${{ github.sha }}
           cache-from: type=gha,scope=epgstation
           cache-to: type=gha,mode=max,scope=epgstation
