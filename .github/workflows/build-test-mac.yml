@@ -13,7 +13,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: setup Docker
-        run: brew install docker colima
+        run: |
+          brew install docker colima
+          colima start
+
       - uses: actions/checkout@v4
       - name: clone
         run: git clone https://github.com/cloudflare/cloudflared.git --depth=1
