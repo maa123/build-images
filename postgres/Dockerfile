@@ -1,7 +1,5 @@
 FROM postgres:17
 
-COPY ./init-postgres.sh /usr/local/bin/
+COPY ./init-postgres.sh /docker-entrypoint-initdb.d/
 
-RUN chmod +x /usr/local/bin/init-postgres.sh
-
-CMD ["init-postgres.sh"]
+RUN chmod +x /docker-entrypoint-initdb.d/init-postgres.sh
