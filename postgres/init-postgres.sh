@@ -6,4 +6,4 @@ if [ -f "$PGDATA/PG_VERSION" ] && [ -n "$POSTGRESQL_USER" ] && [ -n "$POSTGRESQL
     su postgres -c "psql -c \"ALTER USER $POSTGRESQL_USER WITH PASSWORD '$POSTGRESQL_PASSWORD';\""
 fi
 
-exec postgres
+postgres
