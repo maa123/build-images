@@ -6,7 +6,7 @@ on:
     branches: ["master"]
     paths:
       - ".github/workflows/build-py-clip-base.yml"
-      - "py-clip-base/"
+      - "py-clip-base/*"
   workflow_dispatch:
 
 jobs:
