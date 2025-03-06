@@ -1,4 +1,4 @@
-FROM python:3.13-slim AS builder
+FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt --user --no-cache-dir --no-deps
 
 RUN pip install --no-cache-dir --no-deps --user torch==2.5.1+cpu torchvision==0.20.1+cpu --index-url https://download.pytorch.org/whl/cpu
 
-FROM python:3.13-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
