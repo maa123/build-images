@@ -9,3 +9,19 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/py-clip-base/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/py-clip-base/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/py-worker-base/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/py-worker-base/"
+    schedule:
+      interval: "weekly"
