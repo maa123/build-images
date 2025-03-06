@@ -7,7 +7,7 @@ colorama==0.4.6
 coloredlogs==15.0.1
 fastapi==0.115.5
 filelock==3.16.1
-flatbuffers==24.3.25
+flatbuffers==25.2.10
 fsspec==2024.10.0
 h11==0.14.0
 huggingface-hub==0.26.3
