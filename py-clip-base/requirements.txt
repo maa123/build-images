@@ -9,7 +9,7 @@ fastapi==0.115.5
 filelock==3.16.1
 flatbuffers==25.2.10
 fsspec==2024.10.0
-h11==0.14.0
+h11==0.16.0
 huggingface-hub==0.30.1
 humanfriendly==10.0
 idna==3.10
