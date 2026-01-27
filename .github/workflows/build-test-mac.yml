@@ -17,7 +17,7 @@ jobs:
           brew install qemu docker colima
           colima start
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: clone
         run: git clone https://github.com/cloudflare/cloudflared.git --depth=1
 
