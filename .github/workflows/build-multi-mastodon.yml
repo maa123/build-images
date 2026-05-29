@@ -7,6 +7,7 @@ on:
     branches: ["master"]
     paths:
       - ".github/workflows/build-multi-mastodon.yml"
+      - "mastodon/**"
 env:
   REGISTRY_IMAGE: ghcr.io/maa123/build-images/mastodon
 
@@ -36,6 +37,8 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha
       
+      - uses: actions/checkout@v6
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       
@@ -49,17 +52,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: clone
-        run: git clone https://github.com/maa123/mastodon.git --depth=1
-
-      - name: Dockerfile patch
-        run: sed -i 's/20.6-bookworm-slim/20-bookworm-slim/g' mastodon/Dockerfile
-      
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v6
         with:
           context: ./mastodon/
+          build-args: |
+            NODE_VERSION=20-bookworm-slim
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
