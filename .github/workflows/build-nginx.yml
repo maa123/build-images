@@ -6,6 +6,7 @@ on:
     branches: ["master"]
     paths:
       - ".github/workflows/build-nginx.yml"
+      - "nginx/**"
   workflow_dispatch:
 
 jobs:
@@ -13,8 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: clone
-        run: git clone https://github.com/nginxinc/docker-nginx.git --depth=1
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -27,7 +26,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./docker-nginx/mainline/alpine-slim/
+          context: ./nginx/
           push: true
           tags: ghcr.io/maa123/build-images/nginx:latest,ghcr.io/maa123/build-images/nginx:${{ github.sha }}
           cache-from: type=gha,scope=nginx
